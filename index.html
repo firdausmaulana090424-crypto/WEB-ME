@@ -6,6 +6,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <meta name="theme-color" content="#1e40af">
+  <link rel="icon" type="image/png" href="SakuCerdas.png">
+  <link rel="apple-touch-icon" href="SakuCerdas.png">
   <link rel="manifest" href="data:application/manifest+json,{'name':'SakuCerdas','short_name':'SakuCerdas','start_url':'.','display':'standalone','background_color':'#ffffff','theme_color':'#1e40af'}">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -506,10 +508,10 @@
 
       let ws = XLSX.utils.aoa_to_sheet(dataSaku);
       let wb = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, "Laporan SakuCerdas");
+      XXLSX.utils.book_append_sheet(wb, ws, "Laporan SakuCerdas");
       
       const namaFile = `Laporan_SakuCerdas_${dapatkanInfoWaktuFilter()}.xlsx`;
-      XLSX.writeFile(wb, namaFile);
+      XXLSX.writeFile(wb, namaFile);
     }
 
     function eksporPDF() {
