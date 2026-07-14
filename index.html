@@ -2,13 +2,13 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>SakuCerdas</title>
+  <title>Uang Kas Kelas X-3</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <meta name="theme-color" content="#1e40af">
   <link rel="icon" type="image/png" href="SakuCerdas.png">
   <link rel="apple-touch-icon" href="SakuCerdas.png">
-  <link rel="manifest" href="data:application/manifest+json,{'name':'SakuCerdas','short_name':'SakuCerdas','start_url':'.','display':'standalone','background_color':'#ffffff','theme_color':'#1e40af'}">
+  <link rel="manifest" href="data:application/manifest+json,{'name':'Uang Kas Kelas X-3','short_name':'UangKasX3','start_url':'.','display':'standalone','background_color':'#ffffff','theme_color':'#1e40af'}">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -18,12 +18,12 @@
   <header class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-50">
     <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <img src="SakuCerdas.png" alt="SakuCerdas Logo" class="w-12 h-12 object-contain rounded-xl shadow-md" onerror="this.style.display='none'; document.getElementById('fallbackLogo').classList.remove('hidden');">
+        <img src="SakuCerdas.png" alt="Logo" class="w-12 h-12 object-contain rounded-xl shadow-md" onerror="this.style.display='none'; document.getElementById('fallbackLogo').classList.remove('hidden');">
         <div id="fallbackLogo" class="hidden w-12 h-12 bg-gradient-to-tr from-blue-600 to-orange-500 rounded-xl flex items-center justify-center text-white text-xl shadow-md">
           <i class="fa-solid fa-wallet"></i>
         </div>
         <div>
-          <h1 class="text-xl font-bold text-blue-900 tracking-tight">Saku<span class="text-orange-500">Cerdas</span></h1>
+          <h1 class="text-xl font-bold text-blue-900 tracking-tight">Uang Kas <span class="text-orange-500">Kelas X-3</span></h1>
           <p class="text-xs text-slate-500" id="liveClock"></p>
         </div>
       </div>
@@ -39,7 +39,7 @@
       
       <div class="bg-gradient-to-br from-blue-700 to-blue-900 text-white rounded-2xl p-5 shadow-lg relative overflow-hidden">
         <div class="absolute -right-6 -bottom-6 text-white/10 text-8xl font-bold"><i class="fa-solid fa-wallet"></i></div>
-        <p class="text-xs text-blue-200 uppercase font-semibold tracking-wider">Sisa Saldo (Net Balance)</p>
+        <p class="text-xs text-blue-200 uppercase font-semibold tracking-wider">Sisa Saldo Kas</p>
         <h2 class="text-3xl font-extrabold mt-1" id="netBalance">Rp 0</h2>
         
         <div class="mt-4 pt-4 border-t border-white/20 flex items-center justify-between">
@@ -49,11 +49,11 @@
       </div>
 
       <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
-        <h3 class="font-bold text-slate-700 mb-3 flex items-center gap-2"><i class="fa-solid fa-bullseye text-orange-500"></i> Target Tabungan</h3>
+        <h3 class="font-bold text-slate-700 mb-3 flex items-center gap-2"><i class="fa-solid fa-bullseye text-orange-500"></i> Target Kas Kelas</h3>
         <div class="space-y-3">
           <div>
             <div class="flex justify-between text-xs mb-1">
-              <span class="text-slate-500">Progress ke Target</span>
+              <span class="text-slate-500">Progress Ke Target</span>
               <span class="font-bold text-slate-700" id="targetProgressText">0%</span>
             </div>
             <div class="w-full bg-slate-100 rounded-full h-2.5">
@@ -83,7 +83,7 @@
           </div>
           <div>
             <label class="block text-xs font-medium text-slate-500 mb-1">Keterangan</label>
-            <input type="text" id="ketInput" placeholder="Beli makan, uang saku, dll" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-500">
+            <input type="text" id="ketInput" placeholder="Bayar kas Ahmad, beli sapu, dll" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-500">
           </div>
           <button onclick="simpanTransaksi()" id="btnSubmit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg text-sm shadow transition flex items-center justify-center gap-2 cursor-pointer">
             <i class="fa-solid fa-floppy-disk"></i> Simpan Transaksi
@@ -233,11 +233,9 @@
       });
 
       if (isInitialLoad) {
-        const blnSekarang = new Date().getMonth();
-        const thnSekarang = new Date().getFullYear();
-
-        selectBulan.value = bulanTersedia.has(blnSekarang) ? blnSekarang : (arrBulan.length > 0 ? arrBulan[0] : "all");
-        selectTahun.value = tahunTersedia.has(thnSekarang) ? thnSekarang : (arrTahun.length > 0 ? arrTahun[0] : "all");
+        // Default awal ke "Semua Periode" agar jika data baru/kosong tidak bug tersembunyi
+        selectBulan.value = "all";
+        selectTahun.value = "all";
         isInitialLoad = false;
       } else {
         selectBulan.value = selectBulan.querySelector(`option[value="${sBulan}"]`) ? sBulan : "all";
@@ -439,7 +437,7 @@
       if(!jumlah || !ket) return alert('Mohon isi jumlah dan keterangan!');
 
       btn.disabled = true;
-      btn.innerText = "Memproses...";
+      btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Memproses...';
 
       panggilAPIJsonp(API_URL, {
         action: 'tambahTransaksi',
@@ -506,12 +504,13 @@
         dataSaku.push([new Date(e.tanggal).toLocaleDateString('id-ID'), e.tipe, e.jumlah, e.keterangan]);
       });
 
+      // PERBAIKAN: Mengubah XXLSX menjadi XLSX biasa
       let ws = XLSX.utils.aoa_to_sheet(dataSaku);
       let wb = XLSX.utils.book_new();
-      XXLSX.utils.book_append_sheet(wb, ws, "Laporan SakuCerdas");
+      XLSX.utils.book_append_sheet(wb, ws, "Laporan Uang Kas");
       
-      const namaFile = `Laporan_SakuCerdas_${dapatkanInfoWaktuFilter()}.xlsx`;
-      XXLSX.writeFile(wb, namaFile);
+      const namaFile = `Laporan_Kas_X3_${dapatkanInfoWaktuFilter()}.xlsx`;
+      XLSX.writeFile(wb, namaFile);
     }
 
     function eksporPDF() {
@@ -556,7 +555,7 @@
         doc.setTextColor(255, 255, 255);
         doc.setFont("helvetica", "bold");
         doc.setFontSize(12);
-        doc.text("SC", 20, 23);
+        doc.text("KAS", 19, 23);
         lanjutCetakPDF(doc, infoPeriode);
       };
     }
@@ -565,7 +564,7 @@
       doc.setFont("helvetica", "bold");
       doc.setFontSize(22);
       doc.setTextColor(30, 58, 138); 
-      doc.text("SakuCerdas", 36, 20);
+      doc.text("Uang Kas Kelas X-3", 36, 20);
       
       doc.setFontSize(12);
       doc.setFont("helvetica", "bold");
@@ -678,7 +677,7 @@
       doc.setTextColor(30, 58, 138); 
       doc.text(formatRupiah(sisaSaldoPeriode), 142, y + 14);
       
-      const namaFile = `Laporan_SakuCerdas_${dapatkanInfoWaktuFilter()}.pdf`;
+      const namaFile = `Laporan_Kas_X3_${dapatkanInfoWaktuFilter()}.pdf`;
       doc.save(namaFile);
     }
 
